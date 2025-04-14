@@ -89,3 +89,22 @@ func (c *Client) CreateRevision(ctx context.Context, shareID, linkID string) (Cr
 
 	return res.Revision, nil
 }
+
+type RevisionVerification struct {
+	VerificationCode string
+	ContentKeyPacket string
+}
+
+func (c *Client) VerifyRevision(ctx context.Context, shareID, linkID, revisionID string) (RevisionVerification, error) {
+	var res RevisionVerification
+
+	if err := c.do(ctx, func(r *resty.Request) (*resty.Response, error) {
+		return r.
+			SetResult(&res).
+			Get("/drive/shares/" + shareID + "/links/" + linkID + "/revisions/" + revisionID + "/verification")
+	}); err != nil {
+		return RevisionVerification{}, err
+	}
+
+	return res, nil
+}
