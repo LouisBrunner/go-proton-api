@@ -27,6 +27,7 @@ type UpdateRevisionReq struct {
 	State             RevisionState
 	ManifestSignature string
 	SignatureAddress  string
+	XAttr             string
 }
 
 type BlockToken struct {

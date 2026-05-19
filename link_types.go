@@ -32,6 +32,9 @@ type Link struct {
 	NodePassphrase          string // The passphrase used to unlock the NodeKey, encrypted by the owning Link/Share keyring.
 	NodePassphraseSignature string
 
+	NameSignatureEmail string
+	SignatureEmail     string
+
 	FileProperties   *FileProperties
 	FolderProperties *FolderProperties
 }
